@@ -95,6 +95,16 @@ O desempenho geral já era alto e foi mantido após as otimizações.
 
 ---
 
+Evidências
+
+Antes:
+[lighthouse1.pdf](https://github.com/user-attachments/files/26558690/lighthouse1.pdf)
+
+Depois:
+[lighthouse2.pdf](https://github.com/user-attachments/files/26558694/lighthouse2.pdf)
+
+---
+
 ## Como executar o projeto
 
 1. Clone o repositório:
