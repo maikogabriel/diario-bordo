@@ -6,7 +6,7 @@
 body {
   margin: 0;
   background: #0f172a;
-  color: #f1f5f9;
+  color: #ffffff;
 }
 
 .container {
@@ -25,10 +25,19 @@ form {
   gap: 10px;
 }
 
+label {
+  font-size: 14px;
+}
+
 input, textarea, button {
   padding: 10px;
   border: none;
   border-radius: 8px;
+}
+
+input, textarea {
+  background: #1e293b;
+  color: #fff;
 }
 
 button {

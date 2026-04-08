@@ -1,16 +1,12 @@
-// ===== ELEMENTOS =====
 const form = document.getElementById('form');
 const lista = document.getElementById('lista');
 
-// ===== DADOS =====
 let entradas = JSON.parse(localStorage.getItem('entradas')) || [];
 
-// ===== SALVAR =====
 function salvar() {
   localStorage.setItem('entradas', JSON.stringify(entradas));
 }
 
-// ===== RENDERIZAR =====
 function renderizar() {
   lista.innerHTML = '';
 
@@ -20,8 +16,7 @@ function renderizar() {
     li.innerHTML = `
       <strong>${item.titulo}</strong><br>
       ${item.descricao}<br>
-      <small>${item.data}</small>
-      <br>
+      <small>${item.data}</small><br>
       <button class="delete">Remover</button>
     `;
 
@@ -35,7 +30,6 @@ function renderizar() {
   });
 }
 
-// ===== ADICIONAR ENTRADA =====
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -50,19 +44,16 @@ form.addEventListener('submit', (e) => {
   form.reset();
 });
 
-// ===== INICIAR =====
 renderizar();
 
-// ===== SERVICE WORKER =====
+// SERVICE WORKER
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('Service Worker registrado'))
-      .catch(err => console.log('Erro SW:', err));
+    navigator.serviceWorker.register('service-worker.js');
   });
 }
 
-// ===== INSTALAÇÃO PWA =====
+// INSTALAÇÃO PWA (BOTÃO ÚNICO)
 let deferredPrompt;
 let installBtn = null;
 
@@ -70,12 +61,10 @@ window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
 
-  // evita botão duplicado
   if (!installBtn) {
     installBtn = document.createElement('button');
     installBtn.textContent = 'Instalar App';
 
-    // estilo do botão
     installBtn.style.position = 'fixed';
     installBtn.style.bottom = '20px';
     installBtn.style.left = '50%';
@@ -86,29 +75,19 @@ window.addEventListener('beforeinstallprompt', (e) => {
     installBtn.style.background = '#3b82f6';
     installBtn.style.color = '#fff';
     installBtn.style.cursor = 'pointer';
-    installBtn.style.zIndex = '1000';
 
     document.body.appendChild(installBtn);
 
     installBtn.addEventListener('click', async () => {
       deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
 
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log('Resultado:', outcome);
-
-      deferredPrompt = null;
-
-      // remove botão depois
       installBtn.remove();
       installBtn = null;
     });
   }
 });
 
-// remove botão se já instalou
 window.addEventListener('appinstalled', () => {
-  if (installBtn) {
-    installBtn.remove();
-    installBtn = null;
-  }
+  if (installBtn) installBtn.remove();
 });

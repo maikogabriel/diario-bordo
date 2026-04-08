@@ -3,27 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Diário de Bordo</title>
 
-  <link rel="stylesheet" href="style.css">
+  <!-- SEO -->
+  <meta name="description" content="Aplicativo de diário de bordo para registro de atividades diárias.">
+
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-
   <meta name="theme-color" content="#1e293b">
-</head>
-<body>
 
-  <div class="container">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
     <h1>📘 Diário de Bordo</h1>
 
     <form id="form">
-      <input type="text" id="titulo" placeholder="Título" required>
-      <textarea id="descricao" placeholder="Descrição" required></textarea>
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" required>
+
+      <label for="descricao">Descrição</label>
+      <textarea id="descricao" required></textarea>
+
+      <label for="data">Data</label>
       <input type="date" id="data" required>
+
       <button type="submit">Adicionar</button>
     </form>
 
     <ul id="lista"></ul>
-  </div>
+  </main>
 
   <script src="app.js"></script>
 </body>
